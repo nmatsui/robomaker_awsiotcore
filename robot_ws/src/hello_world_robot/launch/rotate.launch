@@ -1,0 +1,23 @@
+<launch>
+  <!-- 
+       Using simulation time means nodes initialized after this
+       will not use the system clock for its ROS clock and 
+       instead wait for simulation ticks. 
+
+       See http://wiki.ros.org/Clock
+
+       Note: set to false for deploying to a real robot.
+  -->
+  <arg name="use_sim_time" default="true"/>
+  <param name="use_sim_time" value="$(arg use_sim_time)"/>
+
+  <!-- Rotate the robot on launch -->
+  <node pkg="hello_world_robot" type="rotate" name="rotate" output="screen">
+    <param name="awsiot/endpoint/host" value="xxxxxxxxxxxxxxxxxx.iot.us-east-1.amazonaws.com"/>
+    <param name="awsiot/endpoint/port" value="8883"/>
+    <param name="awsiot/certs/rootCA" value="$(find hello_world_robot)/certs/AmazonRootCA1.pem"/>
+    <param name="awsiot/certs/certificate" value="$(find hello_world_robot)/certs/9999999999-certificate.pem.crt"/>
+    <param name="awsiot/certs/private" value="$(find hello_world_robot)/certs/9999999999-private.pem.key"/>
+    <param name="awsiot/mqtt/topic/sub" value="/hello_world_robot/sub"/>
+  </node>
+</launch>

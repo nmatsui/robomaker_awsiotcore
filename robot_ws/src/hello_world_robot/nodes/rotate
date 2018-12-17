@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+
+# TODO fix to set appropriate PYTHONPATH by configurations
+import sys
+import os
+sys.path.append(os.path.join(os.path.dirname(__file__), 
+"../../../../../usr/local/lib/python2.7/dist-packages"))
+
+import rospy
+from hello_world_robot.awsiot import AWSIoT
+
+
+def main():
+    rospy.init_node('awsiot')
+    try:
+        rospy.loginfo("main start")
+        AWSIoT().run()
+        rospy.spin()
+        rospy.loginfo("main end")
+    except rospy.ROSInterruptException:
+        pass
+
+if __name__ == '__main__':
+    main()
