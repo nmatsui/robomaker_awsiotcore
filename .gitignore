@@ -1,0 +1,6 @@
+build
+bundle
+install
+log
+**/certs/*
+!**/certs/.gitkeep
